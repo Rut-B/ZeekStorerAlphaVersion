@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ground2"
+    android:divider="@null"
+    android:orientation="vertical"
+    tools:context=".InvoiceListActivity">
+<!--
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="Invoices"
+        android:textColor="@color/red_dark"
+        android:textSize="40dp" />
+-->
+
+    <LinearLayout
+        android:id="@+id/search_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/violet_dark"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:paddingTop="15dp"
+        android:translationZ="5dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txtSearch"
+            style="?android:textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="Search Your Doc"
+            android:textColor="@color/white_app"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/edtSearch"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.04"
+                android:background="@android:color/background_light"
+                android:ems="10"
+                android:hint="search"
+                android:inputType="textPersonName"
+                android:paddingLeft="10dp"
+                android:textColor="@color/violet_dark" />
+
+            <ImageButton
+                android:id="@+id/btnStartSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/ic_menu_search" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:id="@+id/radioCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_weight="1"
+                    android:text="By Category"
+                    android:textColor="@color/white_app"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/radioStore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_weight="1"
+                    android:text="By Store"
+                    android:textColor="@color/white_app"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listIn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="12dp" />
+</LinearLayout>

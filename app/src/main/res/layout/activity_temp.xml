@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TempActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ground2">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <DatePicker
+                android:id="@+id/scheduleTimePicker"
+                android:layout_width="287dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/selectButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onDateSelectedButtonClick"
+                android:text="Set notification for this date" />
+
+            <ImageView
+                android:id="@+id/imageViewDatails"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/edtSave"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:elevation="50dp"
+                android:radius="20dp"
+                android:translationZ="20dp"
+                app:srcCompat="@drawable/logo4" />
+            <!--android:layout_toRightOf="@+id/imgDoc"-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="-150dp"
+                android:background="@drawable/border"
+                android:elevation="200dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:translationZ="200dp"
+                android:weightSum="1">
+
+
+                <android.support.design.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    style="@style/Widget.MaterialComponents.ChipGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp">
+
+
+                    <android.support.design.chip.Chip
+                        android:id="@+id/chipInvoice"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="15dp"
+                        android:focusable="true"
+                        android:padding="5dp"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        app:chipIcon="@drawable/red2"
+                        app:chipIconEnabled="true"
+
+                        app:chipText="Invoice" />
+
+                    <android.support.design.chip.Chip
+                        android:id="@+id/chipCredit"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:focusable="true"
+                        android:padding="5dp"
+                        app:chipIcon="@drawable/green"
+                        app:chipIconEnabled="true"
+                        app:chipText="Credit" />
+                </android.support.design.chip.ChipGroup>
+
+                <!--app:chipBackgroundColor="@color/violet_light"-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_store"
+                        android:layout_width="195dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/ground_input_md"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp">
+
+                        <EditText
+                            android:id="@+id/edtStore"
+                            android:layout_width="170dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="0.04"
+                            android:ems="10"
+                            android:hint="Store"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/violet_dark" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_sum"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/ground_input_sm"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="25dp"
+                        android:paddingTop="10dp">
+
+
+                        <EditText
+                            android:id="@+id/edtSum"
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_gravity="center_horizontal"
+                            android:ems="10"
+                            android:hint="Sum"
+                            android:inputType="numberDecimal"
+                            android:paddingLeft="15dp" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp">
+
+                    <Spinner
+                        android:id="@+id/categorySpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/ground_input"
+                        android:paddingLeft="20dp"
+                        android:prompt="@string/categoryHint"
+                        android:spinnerMode="dialog" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/checkDueDate"
+                    android:layout_width="194dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="have Due date"
+                    android:textColor="@color/white_app"
+                    android:textSize="18sp" />
+
+                <DatePicker
+                    android:id="@+id/dueDate"
+                    android:layout_width="287dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_alignBottom="@+id/imageViewDatails"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorPrimary"
+                    android:elevation="10dp"
+                    android:radius="10dp"
+                    android:text="save"
+                    android:textColor="@color/colorMint"
+                    android:textSize="18sp"
+                    android:translationZ="50dp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

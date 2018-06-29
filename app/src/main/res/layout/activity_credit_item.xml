@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:descendantFocusability="beforeDescendants">
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:paddingRight="15dp"
+    android:background="@drawable/card"
+    android:descendantFocusability="afterDescendants"
+    tools:context=".CreditItemActivity">
+
+
+        <ImageView
+            android:id="@+id/imgDoc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:elevation="10dp"
+            android:maxWidth="150dp"
+            android:scaleType="centerCrop"
+            android:transitionName="image"
+            android:translationZ="15dp" />
+
+        <TextView
+            android:id="@+id/txtStore"
+            style="?android:textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@+id/imgDoc"
+            android:text="store"
+            android:textColor="@color/white_app"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            tools:text="Title 1" />
+
+  <!--  <TextView
+        android:id="@+id/txtSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtStore"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/imgDoc"
+        android:text="Sum"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtStore"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/txtSum"
+        android:text="Date"
+        android:textSize="12dp" />-->
+
+        <TextView
+            android:id="@+id/txtCategory"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtStore"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="-5dp"
+            android:layout_toRightOf="@+id/imgDoc"
+            android:text="category"
+            android:textColor="@color/white_app"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgItemIcon"
+            android:layout_width="55dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center|end"
+            android:layout_marginLeft="20dp"
+
+            android:layout_toRightOf="@+id/txtStore"
+            android:padding="0dp"
+            app:srcCompat="@drawable/green" />
+        </android.support.design.widget.CoordinatorLayout>
+    </RelativeLayout>
+</RelativeLayout>
