@@ -40,25 +40,12 @@
             android:name=".GPSserviceActivity"
             android:enabled="true"
             android:process=":my_process"></service>
-        <!--<service-->
-            <!--android:name=".TempService"-->
-            <!--android:enabled="true" >-->
-        <!--</service>-->
-        <service android:name=".services.ScheduleService" />
-        <service android:name=".services.NotifyService" />
-        <!--<receiver-->
-            <!--android:name=".SensorRestarterBroadcastReceiver"-->
-            <!--android:enabled="true"-->
-            <!--android:exported="true"-->
-            <!--android:label="RestartServiceWhenStopped">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.example.rutbiton.zeeksrorer.ActivityRecognition.RestartSensor"/>-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
+
+
+
 
         <activity android:name=".CreditItemActivity" />
         <activity android:name=".TempActivity" />
-        <activity android:name=".CreditUpdateActivity" />
         <activity android:name=".InvoiceListActivity" />
         <activity
             android:name=".invoiceDetailsActivity"
@@ -70,7 +57,6 @@
             android:value="ocr" />
 
         <activity android:name=".tryImageProccess" />
-        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

@@ -23,7 +23,7 @@ import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
-import com.example.rutbiton.zeeksrorertest.services.ScheduleClient;
+
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -31,14 +31,12 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private BroadcastReceiver broadcastReceiver;
-    private int SPLASH_TIME_OUT = 1500;
+    private final int SPLASH_TIME_OUT = 1500;
     public static SQLiteHelper sqLiteHelper;
-    public static Address my_current_address;
     public static Geocoder geocoder;
     private GPSserviceActivity mservice;
-    private TempService mSensorService;
 
-    public String ans;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,14 +46,9 @@ public class MainActivity extends AppCompatActivity {
         sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS INVOICE(Id INTEGER PRIMARY KEY AUTOINCREMENT, store VARCHAR, sum VARCHAR, image BLOB,date VARCHAR,category VARCHAR,isCredit VARCHAR, dueDate VARCHAR)");
 
         mservice = new GPSserviceActivity();
-        mSensorService = new TempService();
         if (!runtime_permissions())
             enable_service();
 
-        Intent mServiceIntent = new Intent(this, mSensorService.getClass());
-        if (!isMyServiceRunning(mSensorService.getClass())) {
-            startService(mServiceIntent);
-        }
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,"1")
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setSmallIcon(R.mipmap.ic_launcher)

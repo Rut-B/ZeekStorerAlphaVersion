@@ -19,16 +19,7 @@
             android:orientation="vertical"
             android:weightSum="1">
 
-            <DatePicker
-                android:id="@+id/scheduleTimePicker"
-                android:layout_width="287dp"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/selectButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onDateSelectedButtonClick"
-                android:text="Set notification for this date" />
+
 
             <ImageView
                 android:id="@+id/imageViewDatails"

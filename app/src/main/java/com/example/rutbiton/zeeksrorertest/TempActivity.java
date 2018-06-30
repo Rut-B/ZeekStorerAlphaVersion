@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.rutbiton.zeeksrorertest.services.ScheduleClient;
+//import com.example.rutbiton.zeeksrorertest.services.ScheduleClient;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 
@@ -40,9 +40,6 @@ public class TempActivity extends AppCompatActivity {
     ChipGroup chipGroup;
     Chip invC, creC;
     // This is a handle so that we can call methods on our service
-    private ScheduleClient scheduleClient;
-    // This is the date picker used to select the date for our notification
-    private DatePicker picker;
 
 
     @Override
@@ -52,12 +49,8 @@ public class TempActivity extends AppCompatActivity {
         init();
 
 
-        // Create a new service client and bind our activity to this service
-        scheduleClient = new ScheduleClient(this);
-        scheduleClient.doBindService();
 
-        // Get a reference to our date picker
-        picker = (DatePicker) findViewById(R.id.scheduleTimePicker);
+
         //get image
         Bundle extras = getIntent().getExtras();
         byte[] byteArray = extras.getByteArray("image");
@@ -105,7 +98,7 @@ public class TempActivity extends AppCompatActivity {
                     );
                   //  Toast.makeText(getApplicationContext(), "Added successfully!"+isCredit()+dueDateStr, Toast.LENGTH_SHORT).show();
                     View customView = getLayoutInflater().inflate(R.layout.custom_crouton_layout, null);
-                    Crouton.show(TempActivity.this, customView);
+                  //  Crouton.show(TempActivity.this, customView);
                     Intent in = new Intent(TempActivity.this, InvoiceListActivity.class);
 
 
@@ -137,7 +130,7 @@ public class TempActivity extends AppCompatActivity {
                 }
                 catch (Exception e){
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "error!", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(), "error!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -199,33 +192,6 @@ public class TempActivity extends AppCompatActivity {
          chipGroup = (ChipGroup) findViewById(R.id.chipGroup);
 
     }
-    /**
-     * This is the onClick called from the XML to set a new notification
-     */
-    public void onDateSelectedButtonClick(View v){
-        // Get the date from our datepicker
-        int day = picker.getDayOfMonth();
-        int month = picker.getMonth();
-        int year = picker.getYear();
-        // Create a new calendar set to the date chosen
-        // we set the time to midnight (i.e. the first minute of that day)
-        Calendar c = Calendar.getInstance();
-        c.set(year, month, day);
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        // Ask our service to set an alarm for that date, this activity talks to the client that talks to the service
-        scheduleClient.setAlarmForNotification(c);
-        // Notify the user what they just did
-        Toast.makeText(this, "Notification set for: "+ day +"/"+ (month+1) +"/"+ year, Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    protected void onStop() {
-        // When our activity is stopped ensure we also stop the connection to the service
-        // this stops us leaking our activity into the system *bad*
-        if(scheduleClient != null)
-            scheduleClient.doUnbindService();
-        super.onStop();
-    }
+
 }
