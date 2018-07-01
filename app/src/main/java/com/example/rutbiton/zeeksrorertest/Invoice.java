@@ -5,18 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.Date;
 
-public class Invoice {
+public class Invoice
+{
     private int id;
     private String date;
     private String store;
     private String sum;
-    //private String imagePath;
     private String category;
     private byte [] image;
     private String isCredit;
     private String dueDate;
 
-    public Invoice(String date, String store, String sum, String category, byte [] image, String isCredit,String dueDate ,int id) {
+    public Invoice(String date, String store, String sum, String category, byte [] image, String isCredit,String dueDate ,int id)
+    {
         this.date = date;
         this.store = store;
         this.sum = sum;

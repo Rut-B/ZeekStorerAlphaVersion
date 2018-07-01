@@ -27,11 +27,10 @@ import java.io.IOException;
 
 public class tryImageProccess extends AppCompatActivity
 {
-
-    ImageView imageview;
-    Button btnProcess;
-    TextView txtView;
-    Bitmap bitmap;
+    private ImageView imageview;
+    private Button btnProcess;
+    private TextView txtView;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -66,7 +65,6 @@ public class tryImageProccess extends AppCompatActivity
                             for (Text element : line.getComponents()) {
                                 //extract scanned text words here
                                 Log.v("element", element.getValue());
-
                             }
                         }
                     }

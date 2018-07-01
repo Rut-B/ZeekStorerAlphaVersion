@@ -126,8 +126,6 @@ public class MainActivity extends AppCompatActivity {
             broadcastReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    Toast.makeText(MainActivity.this, "This is my Toast message!"+"\n" +intent.getExtras().get("coordinates"),
-                            Toast.LENGTH_LONG).show();
                 }
             };
         }
@@ -149,17 +147,13 @@ public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<String> getCreditListPlaces()
     {
-        //System.out.println("\n__________________    in func    __________\n");
         ArrayList<String> stores = new ArrayList<>();
         Cursor cursor = sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='true'");
         while (cursor.moveToNext()) {
 
             String store = cursor.getString(1);
             stores.add(store);
-            System.out.println("\n____________________________\n"+store);
         }
-
-
         return stores;
     }
 

@@ -63,26 +63,12 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
         radioCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /* if(radioCategory.isSelected()){
-                 //nothing
-               }
-               else{
-                   radioCategory.setSelected(true);
-                   radioStore.setSelected(false);
-               }*/
               searchByStore = false;
             }
         });
         radioStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* if(radioStore.isSelected()){
-                    //nothing
-                }
-                else{
-                    radioCategory.setSelected(false);
-                    radioStore.setSelected(true);
-                }*/
                searchByStore = true;
             }
         });
@@ -94,7 +80,6 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
                 String[] arguments= new String[]{str};
 
                 if(searchByStore){
-                    System.out.println("ListonCreate :=================\n" + "\n=list==========store                ================================");
                     //have searc by store name
                     Cursor cur = MainActivity.sqLiteHelper.getDataWithParams("SELECT * FROM INVOICE WHERE store=?", arguments);
                     getListItems(cur);
@@ -102,7 +87,6 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
                 }
                 else if (!searchByStore){
                     //have to search by category
-                    System.out.println("ListonCreate :=================\n" + "\n=list==========================================");
                     Cursor cur = MainActivity.sqLiteHelper.getDataWithParams("SELECT * FROM INVOICE WHERE category=?", arguments);
                     getListItems(cur);
                     listView.setVisibility(View.VISIBLE);
@@ -116,8 +100,6 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
     {
         list = new ArrayList<>();
         // get all data from sqlite
-        //Cursor cursor = MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='true'");
-
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
             String store = cursor.getString(1);
@@ -146,18 +128,10 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
     {
         try {
             //get and show massage
-
         Bundle extras = getIntent().getExtras();
         String massage = extras.getString("m");
-
-       if(massage.equals("add")){
-           Toast.makeText(getApplicationContext(), "added successfully", Toast.LENGTH_LONG).show();
-         /*  View customView = getLayoutInflater().inflate(R.layout.custom_crouton_layout, null);
-           Crouton.show(InvoiceListActivity.this, customView);*/
-       }
         }
         catch (Exception e){
-
         }
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -217,23 +191,5 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
         b.putInt("id", item.getId());
         in.putExtras(b);
         startActivity(in);
-      //  intent.putExtra(DetailActivity.EXTRA_PARAM_ID, item.getId());
-
-
-       /* ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,
-
-                // Now we provide a list of Pair items which contain the view we can transitioning
-                // from, and the name of the view it is transitioning to, in the launched activity
-                new Pair<View, String>(view.findViewById(R.id.imageview_item),
-                        DetailActivity.VIEW_NAME_HEADER_IMAGE),
-                new Pair<View, String>(view.findViewById(R.id.textview_name),
-                        DetailActivity.VIEW_NAME_HEADER_TITLE));
-
-        // Now we can start the Activity, providing the activity options as a bundle
-        ActivityCompat.startActivity(this, intent, activityOptions.toBundle());
-        // END_INCLUDE(start_activity)*/
-
     }
-
     }

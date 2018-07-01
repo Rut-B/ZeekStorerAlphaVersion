@@ -13,7 +13,8 @@ public class newFileActivity extends AppCompatActivity {
     ImageView imageView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_file);
         imageView = (ImageView)findViewById(R.id.imageViewDatails);
@@ -23,7 +24,8 @@ public class newFileActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
 
         super.onActivityResult(requestCode, resultCode, data);
 

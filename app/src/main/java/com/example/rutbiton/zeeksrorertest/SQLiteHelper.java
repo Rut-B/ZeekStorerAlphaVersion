@@ -1,17 +1,12 @@
 package com.example.rutbiton.zeeksrorertest;
 
-        import android.content.Context;
-        import android.database.Cursor;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.database.sqlite.SQLiteOpenHelper;
-        import android.database.sqlite.SQLiteStatement;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 
-        import java.util.Date;
-        import java.util.StringTokenizer;
 
-/**
- * Created by Quoc Nguyen on 13-Dec-16.
- */
 
 public class SQLiteHelper extends SQLiteOpenHelper
 {

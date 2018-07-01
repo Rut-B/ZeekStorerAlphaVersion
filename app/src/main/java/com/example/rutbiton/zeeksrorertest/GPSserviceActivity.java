@@ -41,7 +41,8 @@ import java.util.TimerTask;
  * this class responsible to GPS service [Rut]
  *
  * */
-public class GPSserviceActivity extends Service {
+public class GPSserviceActivity extends Service
+{
 
     private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
     private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
@@ -61,6 +62,7 @@ public class GPSserviceActivity extends Service {
     private zeekNotification zeek_notification;
     private LocationListener listener;
     private LocationManager locationManager=null;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;

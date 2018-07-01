@@ -13,17 +13,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-public class homeFilesActivity extends AppCompatActivity  {
+public class homeFilesActivity extends AppCompatActivity
+{
 
     View btnPlus, btnInvList, btnCreList, btnLateList, btnSetting, btnSearch;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         init_cameraBtn();
-
-
     }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private void init_cameraBtn()
     {
         setContentView(R.layout.activity_home_files);
@@ -33,7 +34,8 @@ public class homeFilesActivity extends AppCompatActivity  {
         btnLateList= findViewById(R.id.btnLateID);
         btnSetting= findViewById(R.id.btnSettingID);
         btnSearch = findViewById(R.id.btnSearch);
- //~check permission
+
+         //~check permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             btnPlus.setEnabled(false);
             ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
@@ -97,8 +99,11 @@ public class homeFilesActivity extends AppCompatActivity  {
         });
     }
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+    {
         if (requestCode == 0) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
@@ -106,12 +111,11 @@ public class homeFilesActivity extends AppCompatActivity  {
             }
         }
     }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     @Override
-    protected void onDestroy() {
-
-        Log.e("in destroyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy home", "124145454515454515");
-
+    protected void onDestroy()
+    {
         Intent broadcastIntent = new Intent("uk.ac.shef.oak.ActivityRecognition.RestartSensor");
         sendBroadcast(broadcastIntent);
         super.onDestroy();
