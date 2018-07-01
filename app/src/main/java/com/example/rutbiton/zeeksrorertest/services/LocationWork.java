@@ -32,7 +32,7 @@ public static final int DAYS_BEFORE_DUE = 7;
 public static String TAG="in worker";
 public static int counter = 0;
 public static SQLiteHelper sqLiteHelper;
-//private GPSserviceActivity mservice;
+
 
     public WorkerResult doWork()
     {
@@ -82,8 +82,6 @@ public static SQLiteHelper sqLiteHelper;
                 c.add(Calendar.DATE, DAYS_BEFORE_DUE);
                 Date nextWeekDate = c.getTime();
 
-                Log.e("here","date = "+ date.toString() + " currctDate = "+currctDate.toString());
-
                 if(date.after(currctDate) && date.before(nextWeekDate)) {//if is till 6 days next
                     stores = stores + store + " , ";
                 }
@@ -110,24 +108,5 @@ public static SQLiteHelper sqLiteHelper;
     }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//    private void enable_service()
-//    {
-//
-//        Intent i = new Intent(getApplicationContext(), mservice.getClass());
-//        if (!isMyServiceRunning(mservice.getClass())) {
-//            getApplicationContext().startService(i);
-//        }
-//    }
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    private boolean isMyServiceRunning(Class<?> serviceClass)
-    {
-        ActivityManager manager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

@@ -50,14 +50,12 @@ public class invoiceDetailsActivity extends AppCompatActivity {
                                 Intent in = new Intent(invoiceDetailsActivity.this, homeFilesActivity.class);
                                 startActivity( in );
                                 finish();
-
-                                Toast.makeText(getApplicationContext(), "Deleted successfully", Toast.LENGTH_LONG).show();
                             }
                         }).show();
             }
         });
     }
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private void getDetails()
     {
         try {
@@ -83,6 +81,8 @@ public class invoiceDetailsActivity extends AppCompatActivity {
                 dueDateTxt.setVisibility(View.GONE);
             }
             Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
+            invoiceImage.setImageBitmap(bitmap);
+
 
         } catch (Exception e) {
             Intent in = new Intent(invoiceDetailsActivity.this, homeFilesActivity.class);
@@ -91,7 +91,7 @@ public class invoiceDetailsActivity extends AppCompatActivity {
         }
 
     }
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private void init()
     {
         storeTxt = (TextView) findViewById(R.id.txtDetailsStore);

@@ -8,7 +8,7 @@
         <item>Home products</item>
         <item>Cultivation</item>
         <item>Electric</item>
-        <item>category6</item>
+        <item>Other</item>
 
     </string-array>
     <string name="categoryHint">Category</string>

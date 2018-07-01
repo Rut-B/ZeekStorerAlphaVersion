@@ -8,18 +8,6 @@
     android:divider="@null"
     android:orientation="vertical"
     tools:context=".InvoiceListActivity">
-<!--
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:text="Invoices"
-        android:textColor="@color/red_dark"
-        android:textSize="40dp" />
--->
 
     <LinearLayout
         android:id="@+id/search_part"
