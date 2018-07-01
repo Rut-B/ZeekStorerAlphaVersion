@@ -37,6 +37,7 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
     private static InvoiceAdapter adapter;
     private Cursor cursor;
     private boolean searchByStore;
+    String option;
 
     @Override
     protected void  onCreate(Bundle savedInstanceState)
@@ -63,19 +64,19 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
         radioCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              searchByStore = false;
+                searchByStore = false;
             }
         });
         radioStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               searchByStore = true;
+                searchByStore = true;
             }
         });
         startSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //have to get search text, get if is category or store name- send to search and show in list
+                //have to get search text, get if is category or store name- send to search and show in list
                 String str = searchText.getText().toString().trim().toLowerCase();
                 String[] arguments= new String[]{str};
 
@@ -112,7 +113,8 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
 
             list.add(new Invoice(date, store, sum, category, image,kind, dueDate, id));
         }
-        Collections.reverse(list);
+
+        //   Collections.reverse(list);
         if(list.isEmpty()){
             //show snake
             Snackbar.make(listView, "No Items in List", Snackbar.LENGTH_LONG)
@@ -120,20 +122,20 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
 
         }
         adapter= new InvoiceAdapter(list,getApplicationContext());
-            listView.setAdapter(adapter);
-        }
+        listView.setAdapter(adapter);
+    }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private void getMassages()
     {
         try {
             //get and show massage
-        Bundle extras = getIntent().getExtras();
-        String massage = extras.getString("m");
+            Bundle extras = getIntent().getExtras();
+            String massage = extras.getString("m");
         }
         catch (Exception e){
         }
-}
+    }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private Cursor getOption()
@@ -142,37 +144,37 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
             //get and show massage
 
             Bundle extras = getIntent().getExtras();
-            String option  = extras.getString("option");
+            option  = extras.getString("option");
 
 
-           switch (option){
-               case "invoice":{
-                   searchPart.setVisibility(View.GONE);
-                  return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='false'");
-               }
-               case "credit":{
-                   searchPart.setVisibility(View.GONE);
-                   return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='true'");
-               }
-               case "latest":{
-                   searchPart.setVisibility(View.GONE);
-                   return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE   cast(date AS DATE) AS date ORDER BY date DESC LIMIT 5");
-               }
-               case "search":{
-                   searchPart.setVisibility(View.VISIBLE);
-                   listView.setVisibility(View.GONE);
-                   return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE LIMIT 1");
-               }
-           }
+            switch (option){
+                case "invoice":{
+                    searchPart.setVisibility(View.GONE);
+                    return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='false' ORDER BY date DESC ");
+                }
+                case "credit":{
+                    searchPart.setVisibility(View.GONE);
+                    return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='true' ORDER BY date DESC ");
+                }
+                case "latest":{
+                    searchPart.setVisibility(View.GONE);
+                    return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE ORDER BY date DESC LIMIT 5");
+                }
+                case "search":{
+                    searchPart.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.GONE);
+                    return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE LIMIT 1");
+                }
+            }
         }
         catch (Exception e){
 
-            return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE");
+            return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE ORDER BY date DESC");
         }
-        return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE");
+        return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE ORDER BY date DESC");
     }
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
     {
@@ -192,4 +194,4 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
         in.putExtras(b);
         startActivity(in);
     }
-    }
+}
