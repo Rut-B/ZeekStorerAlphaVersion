@@ -35,6 +35,7 @@ import androidx.work.WorkManager;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String TAG_APP = "ZeekStorerApp";
     private BroadcastReceiver broadcastReceiver;
     private final int SPLASH_TIME_OUT = 1500;
     public static SQLiteHelper sqLiteHelper;
@@ -51,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
         sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS INVOICE(Id INTEGER PRIMARY KEY AUTOINCREMENT, store VARCHAR, sum VARCHAR, image BLOB,date VARCHAR,category VARCHAR,isCredit VARCHAR, dueDate VARCHAR)");
 
         PeriodicWorkRequest locationWork = new PeriodicWorkRequest.Builder(
-                LocationWork.class, 15, TimeUnit.MICROSECONDS).addTag(LocationWork.TAG).build();
-      //  LocationWork.class, 15, TimeUnit.MICROSECONDS).addTag(LocationWork.TAG).build();
-        Log.e("before work", "51515555555555555555555555555555555555555555555555555555555555555515151515");
+                LocationWork.class, 24, TimeUnit.HOURS).addTag(LocationWork.TAG).build();
         WorkManager.getInstance().enqueue(locationWork);
 
         mservice = new GPSserviceActivity();
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         Intent resultIntent = new Intent(this, homeFilesActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(resultIntent);
-       new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
            @Override
             public void run() {
                 Intent in = new Intent(MainActivity.this, homeFilesActivity.class);

@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.example.rutbiton.zeeksrorertest.GPSserviceActivity;
+import com.example.rutbiton.zeeksrorertest.MainActivity;
 import com.example.rutbiton.zeeksrorertest.SQLiteHelper;
 import com.example.rutbiton.zeeksrorertest.zeekNotification;
 
@@ -19,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
@@ -32,42 +34,38 @@ public static int counter = 0;
 public static SQLiteHelper sqLiteHelper;
 //private GPSserviceActivity mservice;
 
-public WorkerResult doWork() {
+    public WorkerResult doWork()
+    {
 
-        Log.e("INWORK", "doWork: Started to work1111111111111111111111111111111111111111111111111111111111111" + counter);
         zeekNotification  zeek_notification = new zeekNotification(getApplicationContext());
         sqLiteHelper = new SQLiteHelper(getApplicationContext(), "InvoiceDB.sqlite", null, 1);
-       String actualStores = this.getCreditListDueDatesGoOver();
-        Log.e("INWORK", "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" + actualStores);
+        String actualStores = this.getCreditListDueDatesGoOver();
 
-    if (!actualStores.equals(""))
+         if (!actualStores.equals(""))
         {
             zeek_notification.sendNotification("The following credits are about to expire: ",actualStores,35);
         }
-       Log.e("worker", actualStores);
         // Indicate success or failure with your return value:
         return WorkerResult.SUCCESS;
-
-
     }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-    public static ArrayList<String> getCreditListPlaces(){
-        //System.out.println("\n_______tי___________    in func    __________\n");
+    public static ArrayList<String> getCreditListPlaces()
+    {
         ArrayList<String> stores = new ArrayList<>();
         Cursor cursor = LocationWork.sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='true'");
-        while (cursor.moveToNext()) {
-
+        while (cursor.moveToNext())
+        {
             String store = cursor.getString(1);
             stores.add(store);
-            System.out.println("\n____________________________\n"+store);
         }
-
-
         return stores;
     }
-    public static String getCreditListDueDatesGoOver(){
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public static String getCreditListDueDatesGoOver()
+    {
         String stores = "";
         Cursor cursor = sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='true' AND  dueDate != 'Not Inserted'");
         while (cursor.moveToNext()) {
@@ -76,44 +74,42 @@ public WorkerResult doWork() {
             String dueDate = cursor.getString(7);
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             try{
-                Log.e("here","ssssssssssssssssssssssssssssssssssssssssssssssssss");
 
                 date = format.parse(dueDate);
-                Log.e("here","ffffffffffffffffffffffffffffffffffffffffffffffffffff");
                 Calendar c = Calendar.getInstance();
                 Date currctDate = c.getTime();
 
                 c.add(Calendar.DATE, DAYS_BEFORE_DUE);
                 Date nextWeekDate = c.getTime();
 
+                Log.e("here","date = "+ date.toString() + " currctDate = "+currctDate.toString());
 
                 if(date.after(currctDate) && date.before(nextWeekDate)) {//if is till 6 days next
-                // if(date.after(currctDate) && date.before(nextWeekDate)) {//if is till 6 days next
-                    // In between
-
-                    //stores.add(store);
-                    stores = stores + store + ", ";
+                    stores = stores + store + " , ";
                 }
-                 else if(date.compareTo(currctDate)==0) {
+                 else if(compare(date,currctDate)==0) {
                     //due date is today
-
-                    stores = stores + store;
+                    stores = stores +store + " , " ;
                 }
             }catch (ParseException e){
-                System.out.println("\n_________________catchcatchcatchcatch___________\n");
-
+                Log.e(MainActivity.TAG_APP,"ParseException in getCreditListDueDatesGoOver func  ");
             }
-            System.out.println(dueDate);
-
-            System.out.println("\n____________________________\n"+store);
         }
-
-        System.out.println("\n____________________storesstoresstoresstoresstores________\n"+stores);
-
         return stores;
     }
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public static int compare(Date d1, Date d2)
+    {
+            if (d1.getYear() != d2.getYear())
+                return d1.getYear() - d2.getYear();
+            if (d1.getMonth() != d2.getMonth())
+                return d1.getMonth() - d2.getMonth();
+            return d1.getDate() - d2.getDate();
+    }
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //    private void enable_service()
 //    {
 //
@@ -134,12 +130,4 @@ public WorkerResult doWork() {
         }
         return false;
     }
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
 }

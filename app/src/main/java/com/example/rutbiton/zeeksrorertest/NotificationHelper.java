@@ -10,12 +10,14 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Color;
 
-class NotificationHelper extends ContextWrapper {
+class NotificationHelper extends ContextWrapper
+{
     private NotificationManager manager;
     public static final String PRIMARY_CHANNEL = "default";
     public static final String SECONDARY_CHANNEL = "second";
 
-    public NotificationHelper(Context ctx) {
+    public NotificationHelper(Context ctx)
+    {
         super(ctx);
 
         NotificationChannel chan1 = new NotificationChannel(PRIMARY_CHANNEL,
@@ -30,8 +32,10 @@ class NotificationHelper extends ContextWrapper {
         chan2.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         getManager().createNotificationChannel(chan2);
     }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    public Notification.Builder getNotification1(String title, String body) {
+    public Notification.Builder getNotification1(String title, String body)
+    {
         return new Notification.Builder(getApplicationContext(), PRIMARY_CHANNEL)
                 .setContentTitle(title)
                 .setContentText(body)
@@ -43,24 +47,32 @@ class NotificationHelper extends ContextWrapper {
     PendingIntent notifyPendingIntent = PendingIntent.getActivity(
             this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
     );
-    public Notification.Builder getNotification2(String title, String body) {
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public Notification.Builder getNotification2(String title, String body)
+    {
         return new Notification.Builder(getApplicationContext(), SECONDARY_CHANNEL)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setSmallIcon(getSmallIcon())
-                .setAutoCancel(true);
-                //.setContentIntent(notifyPendingIntent);
+                .setAutoCancel(true)
+                .setContentIntent(notifyPendingIntent);
     }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    public void notify(int id, Notification.Builder notification) {
+    public void notify(int id, Notification.Builder notification)
+    {
         getManager().notify(id, notification.build());
     }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     private int getSmallIcon() {
         return android.R.drawable.stat_notify_chat;
     }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    private NotificationManager getManager() {
+    private NotificationManager getManager()
+    {
         if (manager == null) {
             manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         }

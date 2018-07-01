@@ -125,7 +125,6 @@ public class invoiceDetailsActivity extends AppCompatActivity {
         categoryTxt = (TextView)findViewById(R.id.txtDetailsCategory);
         invoiceDateTxt = (TextView)findViewById(R.id.txtDetailsDate);
         dueDateTxt= (TextView)findViewById(R.id.txtDetailsDueDate);
-
         invoiceImage = (ImageView) findViewById(R.id.imageViewDatails);
     }
 }

@@ -214,14 +214,14 @@ public class GPSserviceActivity extends Service {
 
             } catch (JSONException e)
             {
-                Log.d("debug", "onCreate :Cannot process JSON results");
+                Log.e(MainActivity.TAG_APP, "onCreate :Cannot process JSON results");
             }
         } catch (MalformedURLException e)
         {
-            Log.d("debug", "Error processing Places API URL");
+            Log.e(MainActivity.TAG_APP, "Error processing Places API URL");
         } catch (IOException e)
         {
-            Log.d("debug", "Error connecting to Places API");
+            Log.e(MainActivity.TAG_APP, "Error connecting to Places API");
         }
         finally
         {

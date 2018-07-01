@@ -39,7 +39,8 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
     private boolean searchByStore;
 
     @Override
-    protected void  onCreate(Bundle savedInstanceState) {
+    protected void  onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_invoice_list);
@@ -109,8 +110,10 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
             }
         });
     }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    private void getListItems(Cursor cursor){
+    private void getListItems(Cursor cursor)
+    {
         list = new ArrayList<>();
         // get all data from sqlite
         //Cursor cursor = MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='true'");
@@ -137,7 +140,10 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
         adapter= new InvoiceAdapter(list,getApplicationContext());
             listView.setAdapter(adapter);
         }
-private void getMassages(){
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    private void getMassages()
+    {
         try {
             //get and show massage
 
@@ -154,8 +160,10 @@ private void getMassages(){
 
         }
 }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-private Cursor getOption(){
+    private Cursor getOption()
+    {
         try {
             //get and show massage
 
@@ -190,10 +198,10 @@ private Cursor getOption(){
         return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE");
     }
 
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     @Override
-
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
+    {
         Invoice item = (Invoice) adapterView.getItemAtPosition(position);
 
         // Construct an Intent as normal
@@ -227,7 +235,5 @@ private Cursor getOption(){
         // END_INCLUDE(start_activity)*/
 
     }
-
-
 
     }
