@@ -15,6 +15,7 @@ import com.example.rutbiton.zeeksrorertest.SQLiteHelper;
 import com.example.rutbiton.zeeksrorertest.zeekNotification;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,7 +38,9 @@ public WorkerResult doWork() {
         zeekNotification  zeek_notification = new zeekNotification(getApplicationContext());
         sqLiteHelper = new SQLiteHelper(getApplicationContext(), "InvoiceDB.sqlite", null, 1);
        String actualStores = this.getCreditListDueDatesGoOver();
-        if (!actualStores.equals(""))
+        Log.e("INWORK", "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" + actualStores);
+
+    if (!actualStores.equals(""))
         {
             zeek_notification.sendNotification("The following credits are about to expire: ",actualStores,35);
         }
@@ -65,7 +68,6 @@ public WorkerResult doWork() {
         return stores;
     }
     public static String getCreditListDueDatesGoOver(){
-        //System.out.println("\n_______tי___________    in func    __________\n");
         String stores = "";
         Cursor cursor = sqLiteHelper.getData("SELECT * FROM INVOICE WHERE isCredit='true' AND  dueDate != 'Not Inserted'");
         while (cursor.moveToNext()) {
@@ -74,21 +76,31 @@ public WorkerResult doWork() {
             String dueDate = cursor.getString(7);
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             try{
+                Log.e("here","ssssssssssssssssssssssssssssssssssssssssssssssssss");
+
                 date = format.parse(dueDate);
+                Log.e("here","ffffffffffffffffffffffffffffffffffffffffffffffffffff");
                 Calendar c = Calendar.getInstance();
                 Date currctDate = c.getTime();
+
                 c.add(Calendar.DATE, DAYS_BEFORE_DUE);
                 Date nextWeekDate = c.getTime();
+
+
                 if(date.after(currctDate) && date.before(nextWeekDate)) {//if is till 6 days next
+                // if(date.after(currctDate) && date.before(nextWeekDate)) {//if is till 6 days next
                     // In between
+
                     //stores.add(store);
                     stores = stores + store + ", ";
                 }
-                 else if(date.equals(currctDate)) {
+                 else if(date.compareTo(currctDate)==0) {
                     //due date is today
+
                     stores = stores + store;
                 }
-            }catch (Exception e){
+            }catch (ParseException e){
+                System.out.println("\n_________________catchcatchcatchcatch___________\n");
 
             }
             System.out.println(dueDate);
@@ -96,6 +108,7 @@ public WorkerResult doWork() {
             System.out.println("\n____________________________\n"+store);
         }
 
+        System.out.println("\n____________________storesstoresstoresstoresstores________\n"+stores);
 
         return stores;
     }
