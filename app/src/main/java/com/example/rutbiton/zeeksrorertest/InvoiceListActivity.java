@@ -166,7 +166,7 @@ public class InvoiceListActivity extends AppCompatActivity implements AdapterVie
            }
         }
         catch (Exception e){
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+
             return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE");
         }
         return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE");

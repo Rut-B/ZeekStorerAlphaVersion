@@ -48,27 +48,6 @@
             android:textStyle="bold"
             tools:text="Title 1" />
 
-  <!--  <TextView
-        android:id="@+id/txtSum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtStore"
-        android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/imgDoc"
-        android:text="Sum"
-        android:textSize="18dp" />
-
-    <TextView
-        android:id="@+id/txtDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtStore"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="8dp"
-        android:layout_toRightOf="@+id/txtSum"
-        android:text="Date"
-        android:textSize="12dp" />-->
-
         <TextView
             android:id="@+id/txtCategory"
             style="?android:textAppearanceSmall"
