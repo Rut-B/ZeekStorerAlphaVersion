@@ -7,6 +7,7 @@ import android.support.design.chip.Chip;
 import android.support.design.chip.ChipGroup;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -79,7 +80,7 @@ public class TempActivity extends AppCompatActivity {
                 String dueDateStr;
                 String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());//have to get date
               if(haveDueDate.isChecked()) {
-                   dueDateStr = "" + dueDate.getDayOfMonth() + "/" + (dueDate.getMonth() + 1) + "/" + dueDate.getYear();
+                  dueDateStr = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(getDateFromDatePicker(dueDate));
               }
               else{
                  dueDateStr = "Not Inserted";
@@ -96,8 +97,9 @@ public class TempActivity extends AppCompatActivity {
                             ""+isCredit(),
                             dueDateStr
                     );
+                   Log.d("tempA", "insert to sql");
                   //  Toast.makeText(getApplicationContext(), "Added successfully!"+isCredit()+dueDateStr, Toast.LENGTH_SHORT).show();
-                    View customView = getLayoutInflater().inflate(R.layout.custom_crouton_layout, null);
+                    //View customView = getLayoutInflater().inflate(R.layout.custom_crouton_layout, null);
                   //  Crouton.show(TempActivity.this, customView);
                     Intent in = new Intent(TempActivity.this, InvoiceListActivity.class);
 
@@ -108,18 +110,18 @@ public class TempActivity extends AppCompatActivity {
                     if(kind=='i'){
                         Bundle k = new Bundle();
                         k.putString("option","invoice"); //
-                        in.putExtras(b);
+                        in.putExtras(k);
                     }
                     else if(kind=='c'){
                         Bundle k = new Bundle();
                         k.putString("option","credit"); //
-                        in.putExtras(b);
+                        in.putExtras(k);
                     }
                     else{
                         Bundle k = new Bundle();
-                        Toast.makeText(getApplicationContext(), "latest!", Toast.LENGTH_LONG).show();
+                     //   Toast.makeText(getApplicationContext(), "latest!", Toast.LENGTH_LONG).show();
                         k.putString("option","latest"); //
-                        in.putExtras(b);
+                        in.putExtras(k);
                     }
                     startActivity(in);
                     finish();
@@ -130,7 +132,8 @@ public class TempActivity extends AppCompatActivity {
                 }
                 catch (Exception e){
                     e.printStackTrace();
-                  //  Toast.makeText(getApplicationContext(), "error!", Toast.LENGTH_SHORT).show();
+                    Log.d("tempA", "in exeption");
+                   Toast.makeText(getApplicationContext(), "error!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -193,5 +196,14 @@ public class TempActivity extends AppCompatActivity {
 
     }
 
+    public static java.util.Date getDateFromDatePicker(DatePicker datePicker){
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year =  datePicker.getYear();
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+Log.d("tempA", "get due date");
+        return calendar.getTime();
+    }
 }

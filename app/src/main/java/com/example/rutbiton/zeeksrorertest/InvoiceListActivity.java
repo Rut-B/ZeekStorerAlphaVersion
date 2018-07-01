@@ -146,8 +146,8 @@ private void getMassages(){
 
        if(massage.equals("add")){
            Toast.makeText(getApplicationContext(), "added successfully", Toast.LENGTH_LONG).show();
-           View customView = getLayoutInflater().inflate(R.layout.custom_crouton_layout, null);
-           Crouton.show(InvoiceListActivity.this, customView);
+         /*  View customView = getLayoutInflater().inflate(R.layout.custom_crouton_layout, null);
+           Crouton.show(InvoiceListActivity.this, customView);*/
        }
         }
         catch (Exception e){
@@ -174,7 +174,7 @@ private Cursor getOption(){
                }
                case "latest":{
                    searchPart.setVisibility(View.GONE);
-                   return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE LIMIT 15");
+                   return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE LIMIT 5");
                }
                case "search":{
                    searchPart.setVisibility(View.VISIBLE);

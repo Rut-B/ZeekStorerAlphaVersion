@@ -74,7 +74,8 @@ public class invoiceDetailsActivity extends AppCompatActivity {
                                 Intent in = new Intent(invoiceDetailsActivity.this, homeFilesActivity.class);
                                 startActivity(in);
                                 finish();
-                                Toast.makeText(getApplicationContext(), "Deleted successfully", Toast.LENGTH_LONG).show();
+
+                               Toast.makeText(getApplicationContext(), "Deleted successfully", Toast.LENGTH_LONG).show();
                             }
                         }).show();
             }
@@ -100,7 +101,7 @@ public class invoiceDetailsActivity extends AppCompatActivity {
             if(isCredit.equals("true")){
                 //it is credit
                 //  dueDateTxt.setText("Dua Date: Not Inserted");
-                dueDateTxt.setText("Dua Date: "+dueDate);
+                dueDateTxt.setText("Expiry: "+dueDate);
             }
             else{
                 //it is invoice
@@ -113,6 +114,7 @@ public class invoiceDetailsActivity extends AppCompatActivity {
         }catch (Exception e){
             Intent in = new Intent(invoiceDetailsActivity.this, homeFilesActivity.class);
             startActivity(in);
+            finish();
         }
 
     }

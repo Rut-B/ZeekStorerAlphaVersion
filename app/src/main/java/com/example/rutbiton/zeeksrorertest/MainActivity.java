@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
 import android.os.Handler;
@@ -20,13 +19,17 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.DatePicker;
 import android.widget.Toast;
 
 
+import com.example.rutbiton.zeeksrorertest.services.LocationWork;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
         sqLiteHelper = new SQLiteHelper(this, "InvoiceDB.sqlite", null, 1);
         sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS INVOICE(Id INTEGER PRIMARY KEY AUTOINCREMENT, store VARCHAR, sum VARCHAR, image BLOB,date VARCHAR,category VARCHAR,isCredit VARCHAR, dueDate VARCHAR)");
+
+        PeriodicWorkRequest locationWork = new PeriodicWorkRequest.Builder(
+               LocationWork.class, 15, TimeUnit.MICROSECONDS).addTag(LocationWork.TAG).build();
+        Log.e("before work", "51515555555555555555555555555555555555555555555555555555555555555515151515");
+        WorkManager.getInstance().enqueue(locationWork);
 
         mservice = new GPSserviceActivity();
         if (!runtime_permissions())
