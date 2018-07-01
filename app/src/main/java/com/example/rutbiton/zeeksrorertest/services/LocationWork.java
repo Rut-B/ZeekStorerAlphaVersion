@@ -1,6 +1,13 @@
 package com.example.rutbiton.zeeksrorertest.services;
 
+import android.Manifest;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.example.rutbiton.zeeksrorertest.GPSserviceActivity;
@@ -14,29 +21,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+
 import androidx.work.Worker;
 
 public class LocationWork extends Worker {
 public static final int DAYS_BEFORE_DUE = 7;
 public static String TAG="in worker";
 public static int counter = 0;
-    public static SQLiteHelper sqLiteHelper;
+public static SQLiteHelper sqLiteHelper;
+//private GPSserviceActivity mservice;
 
-    public WorkerResult doWork() {
+public WorkerResult doWork() {
 
         Log.e("INWORK", "doWork: Started to work1111111111111111111111111111111111111111111111111111111111111" + counter);
-     zeekNotification  zeek_notification = new zeekNotification(getApplicationContext());
+        zeekNotification  zeek_notification = new zeekNotification(getApplicationContext());
         sqLiteHelper = new SQLiteHelper(getApplicationContext(), "InvoiceDB.sqlite", null, 1);
-        // Do the work here--in this case,
-        //This method will run on background thread
-
-        //CHECK AND SHOE NOTI IF THERE IS ACTUAL LOCATION- CREDIT
-//        Location targetLocation = new Location("");//provider name is unnecessary
-//        targetLocation.setLatitude(35);//your coords of course
-//        targetLocation.setLongitude(33);
-//        GPSserviceActivity.onLocationChangedNames(targetLocation,getApplicationContext());
-
-        //CHECK AND SHOE NOTI IF THERE IS ACTUAL LOCATION- DATE
        String actualStores = this.getCreditListDueDatesGoOver();
         if (!actualStores.equals(""))
         {
@@ -48,7 +47,7 @@ public static int counter = 0;
 
 
     }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
     public static ArrayList<String> getCreditListPlaces(){
@@ -101,7 +100,31 @@ public static int counter = 0;
         return stores;
     }
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//    private void enable_service()
+//    {
+//
+//        Intent i = new Intent(getApplicationContext(), mservice.getClass());
+//        if (!isMyServiceRunning(mservice.getClass())) {
+//            getApplicationContext().startService(i);
+//        }
+//    }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    private boolean isMyServiceRunning(Class<?> serviceClass)
+    {
+        ActivityManager manager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 

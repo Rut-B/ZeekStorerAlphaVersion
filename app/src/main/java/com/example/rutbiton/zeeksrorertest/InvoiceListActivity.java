@@ -174,7 +174,8 @@ private Cursor getOption(){
                }
                case "latest":{
                    searchPart.setVisibility(View.GONE);
-                   return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE LIMIT 5");
+                   return MainActivity.sqLiteHelper.getData("SELECT * FROM INVOICE ORDER BY date SELECT DISTINCT\n" +
+                           "  cast(date AS DATE) AS date DESC LIMIT 5");
                }
                case "search":{
                    searchPart.setVisibility(View.VISIBLE);

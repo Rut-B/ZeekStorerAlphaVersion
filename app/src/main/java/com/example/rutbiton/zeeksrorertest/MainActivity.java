@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -49,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
         sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS INVOICE(Id INTEGER PRIMARY KEY AUTOINCREMENT, store VARCHAR, sum VARCHAR, image BLOB,date VARCHAR,category VARCHAR,isCredit VARCHAR, dueDate VARCHAR)");
 
         PeriodicWorkRequest locationWork = new PeriodicWorkRequest.Builder(
-               LocationWork.class, 15, TimeUnit.MICROSECONDS).addTag(LocationWork.TAG).build();
+                LocationWork.class, 15, TimeUnit.MICROSECONDS).addTag(LocationWork.TAG).build();
+      //  LocationWork.class, 15, TimeUnit.MICROSECONDS).addTag(LocationWork.TAG).build();
         Log.e("before work", "51515555555555555555555555555555555555555555555555555555555555555515151515");
         WorkManager.getInstance().enqueue(locationWork);
 
@@ -57,15 +60,10 @@ public class MainActivity extends AppCompatActivity {
         if (!runtime_permissions())
             enable_service();
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,"1")
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("My notification")
-                .setContentText("Much longer text that cannot fit one line...");
-
-        NotificationManager mNotificationManager =  (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build());
-
+        // Create an Intent for the activity you want to start
+        Intent resultIntent = new Intent(this, homeFilesActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addNextIntentWithParentStack(resultIntent);
        new Handler().postDelayed(new Runnable() {
            @Override
             public void run() {

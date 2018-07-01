@@ -150,6 +150,7 @@ public class TempActivity extends AppCompatActivity {
                     kind = 'i';
                    // Toast.makeText(getApplicationContext(), "iiiiiiiiiiiiiiiiiiiiiiiii", Toast.LENGTH_LONG).show();
                     creC.setChecked(false);
+                    haveDueDate.setVisibility(View.GONE);
                 }
             }
         });
@@ -161,6 +162,7 @@ public class TempActivity extends AppCompatActivity {
                     kind = 'c';
                  //   Toast.makeText(getApplicationContext(), "ccccccccccccccccccccccccccccc", Toast.LENGTH_LONG).show();
                     invC.setChecked(false);
+                    haveDueDate.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -179,6 +181,7 @@ public class TempActivity extends AppCompatActivity {
         edtSum = (EditText)findViewById(R.id.edtSum) ;
         imageView = (ImageView) findViewById(R.id.imageViewDatails);
         haveDueDate = (CheckBox) findViewById(R.id.checkDueDate);
+        haveDueDate.setVisibility(View.GONE);
         btnSave = (Button)findViewById(R.id.btnSave);
 
 

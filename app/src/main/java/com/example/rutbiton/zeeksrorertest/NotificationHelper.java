@@ -3,12 +3,13 @@ package com.example.rutbiton.zeeksrorertest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.graphics.Color;
-/**
- * Helper class to manage notification channels, and create notifications. [Rut]
- */
+
 class NotificationHelper extends ContextWrapper {
     private NotificationManager manager;
     public static final String PRIMARY_CHANNEL = "default";
@@ -30,16 +31,6 @@ class NotificationHelper extends ContextWrapper {
         getManager().createNotificationChannel(chan2);
     }
 
-    /**
-     * Get a notification of type 1
-     *
-     * Provide the builder rather than the notification it's self as useful for making notification
-     * changes.
-     *
-     * @param title the title of the notification
-     * @param body the body text for the notification
-     * @return the builder as it keeps a reference to the notification (since API 24)
-     */
     public Notification.Builder getNotification1(String title, String body) {
         return new Notification.Builder(getApplicationContext(), PRIMARY_CHANNEL)
                 .setContentTitle(title)
@@ -48,34 +39,27 @@ class NotificationHelper extends ContextWrapper {
                 .setAutoCancel(true);
     }
 
-    // Build notification for secondary channel.
-
+    Intent notifyIntent = new Intent(this, homeFilesActivity.class);
+    PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+            this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
+    );
     public Notification.Builder getNotification2(String title, String body) {
         return new Notification.Builder(getApplicationContext(), SECONDARY_CHANNEL)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setSmallIcon(getSmallIcon())
                 .setAutoCancel(true);
+                //.setContentIntent(notifyPendingIntent);
     }
-
-  // Send a notification.
 
     public void notify(int id, Notification.Builder notification) {
         getManager().notify(id, notification.build());
     }
 
-    /**
-     * Get the small icon for this app
-     *
-     */
     private int getSmallIcon() {
         return android.R.drawable.stat_notify_chat;
     }
 
-    /**
-     * Get the notification manager.
-     *
-     **/
     private NotificationManager getManager() {
         if (manager == null) {
             manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
