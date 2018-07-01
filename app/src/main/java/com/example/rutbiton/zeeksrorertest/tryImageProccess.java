@@ -25,7 +25,8 @@ import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
 
-public class tryImageProccess extends AppCompatActivity {
+public class tryImageProccess extends AppCompatActivity
+{
 
     ImageView imageview;
     Button btnProcess;
@@ -33,7 +34,8 @@ public class tryImageProccess extends AppCompatActivity {
     Bitmap bitmap;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_try_image_proccess);
 

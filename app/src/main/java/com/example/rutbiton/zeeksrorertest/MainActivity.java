@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS INVOICE(Id INTEGER PRIMARY KEY AUTOINCREMENT, store VARCHAR, sum VARCHAR, image BLOB,date VARCHAR,category VARCHAR,isCredit VARCHAR, dueDate VARCHAR)");
 
         PeriodicWorkRequest locationWork = new PeriodicWorkRequest.Builder(
-                LocationWork.class, 24, TimeUnit.HOURS).addTag(LocationWork.TAG).build();
+                LocationWork.class, 15, TimeUnit.MICROSECONDS).addTag(LocationWork.TAG).build();
         WorkManager.getInstance().enqueue(locationWork);
 
         mservice = new GPSserviceActivity();
